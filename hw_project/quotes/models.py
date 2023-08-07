@@ -8,15 +8,24 @@ class Author(models.Model):
     born_location = models.CharField(max_length=150)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+         return self.fullname
 
 
 
 class Tag(models.Model):
      name = models.CharField(max_length=30, null=False, unique=True)
 
+     def __str__(self) -> str:
+          return self.name
+     
 
 class Quote(models.Model):
      quote = models.TextField()
      tags = models.ManyToManyField(Tag)
      author = models.ForeignKey(Author, on_delete=models.CASCADE, default=None, null=True)
      created_ad =models.DateTimeField(auto_now_add=True) 
+
+     def __str__(self) -> str:
+          return self.quote

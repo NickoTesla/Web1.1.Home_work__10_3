@@ -33,14 +33,18 @@ for quote in quotes:
     exist_quote = bool(len(Quote.objects.filter(quote=quote['quote'])))
 
     if not exist_quote:
+       print(quote['author'])
        author = db.authors.find_one({'_id': quote['author']})
-       a = Author.objects.get(fullname=author['full_name'])
-       q = Quote.objects.create(
-          quote=quote['quote'],
-          author=a
-       )
-       for tag in tags:
-          q.tags.add(tag)
+       print(author)
+       if author:
+                
+            a = Author.objects.get(fullname=author['full_name'])
+            q = Quote.objects.create(
+                quote=quote['quote'],
+                author=a
+            )
+            for tag in tags:
+                q.tags.add(tag)
 
 
 

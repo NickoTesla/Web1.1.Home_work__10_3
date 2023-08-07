@@ -10,7 +10,9 @@ register = template.Library()
 def get_author(id_):
     db = get_db()
     author = db.authors.find_one({'_id': ObjectId(id_)})
-    return author['fullname']
+    return author['full_name']
+
+
 
 
 register.filter('author', get_author)
